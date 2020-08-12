@@ -6,6 +6,8 @@ const inquirer = require('inquirer')
 
 
 
+
+
 // array of questions for user
 const questions = () => {
     inquirer
@@ -53,7 +55,7 @@ const questions = () => {
             type: 'list',
             name: 'license',
             message: 'Which type of license does your application use?',
-            liscenses: ['MIT', 'APACHE2.0', 'GPL3.0', 'BSD3', 'None']
+            choices: ['MIT', 'APACHE2.0', 'GPL3.0', 'BSD3', 'None']
         }
         ])
         .then(res => {
@@ -65,10 +67,50 @@ const questions = () => {
             console.log(res.test)
             console.log(res.github)
             console.log(res.email)
-            console.log(res.liscense)
-        })
-};
+            console.log(res.license)
 
+
+            let data = `
+# Title: ${res.title}
+![badge](https://img.shields.io/badge/license-${res.license}-blue.svg)
+-------
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+## Description:
+${res.description}
+## Installation:
+${res.installation}
+## Usage:
+ ${res.usage}
+## Contributing:
+${res.contribution}
+## Tests:
+${res.test}
+## License:
+${res.liscense}
+## Questions:
+Github Username: [${res.github}](https://github.com/${res.github})
+Contact me via email at: ${res.email}`
+
+
+            fs.writeFile('newreadme.md', data, (err) => {
+                if (err) { console.log(err) }
+                console.log('File Created!')
+            })
+
+
+
+        })
+        .catch (err => {
+            console.log(err)
+        })
+}
 questions()
 
 
@@ -76,16 +118,16 @@ questions()
 
 
 
-    ;
+    // ;
 
-// function to write README file
-function writeToFile(fileName, data) {
-}
+// // function to write README file
+// function writeToFile(fileName, data) {
+// }
 
-// function to initialize program
-function init() {
+// // function to initialize program
+// function init() {
 
-}
+// }
 
-// function call to initialize program
-init();
+// // function call to initialize program
+// init();
