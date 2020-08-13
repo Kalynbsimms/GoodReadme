@@ -7,7 +7,7 @@ const inquirer = require('inquirer')
 
 
 
-
+// Start of program
 // array of questions for user
 const questions = () => {
     inquirer
@@ -69,7 +69,7 @@ const questions = () => {
             console.log(res.email)
             console.log(res.license)
 
-
+// Display the data of the answers provided
             let data = `
 # Title: ${res.title}
 ![badge](https://img.shields.io/badge/license-${res.license}-blue.svg)
@@ -98,7 +98,7 @@ ${res.liscense}
 Github Username: [${res.github}](https://github.com/${res.github})
 Contact me via email at: ${res.email}`
 
-
+// // function to write README file
             fs.writeFile('newreadme.md', data, (err) => {
                 if (err) { console.log(err) }
                 console.log('File Created!')
@@ -111,6 +111,7 @@ Contact me via email at: ${res.email}`
             console.log(err)
         })
 }
+// Function call to begin the program
 questions()
 
 
@@ -118,16 +119,4 @@ questions()
 
 
 
-    // ;
-
-// // function to write README file
-// function writeToFile(fileName, data) {
-// }
-
-// // function to initialize program
-// function init() {
-
-// }
-
-// // function call to initialize program
-// init();
+  
